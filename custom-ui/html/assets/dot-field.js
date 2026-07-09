@@ -13,8 +13,8 @@
     glowRadius: 190,
     sparkle: false,
     waveAmplitude: 0,
-    gradientFrom: 'rgba(45, 212, 191, 0.55)',
-    gradientTo: 'rgba(52, 211, 153, 0.45)',
+    gradientFrom: 'rgba(255, 255, 255, 0.45)',
+    gradientTo: 'rgba(255, 255, 255, 0.22)',
     glowColor: '#120F17',
   };
 
