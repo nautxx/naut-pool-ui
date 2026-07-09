@@ -1,0 +1,26 @@
+#dot-field-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  background: #0a0a0d;
+}
+
+#dot-field-bg canvas,
+#dot-field-bg svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#dot-field-bg svg {
+  pointer-events: none;
+}
+
+/* Existing Angular particle background is replaced by DotField */
+app-background-particles {
+  display: none !important;
+}
