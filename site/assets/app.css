@@ -389,6 +389,30 @@ a { color: inherit; }
   color: var(--sub);
 }
 
+.chart-canvas { position: relative; }
+
+.chart-dots-fade-h {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.chart-dots-fade-v {
+  position: absolute;
+  inset: 0;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+}
+
+.chart-dots {
+  position: absolute;
+  inset: 0;
+  background-size: 10px 10px;
+  opacity: 0.14;
+}
+
 /* ---------- tabs card ---------- */
 
 .tabs-head { display: flex; border-bottom: 1.5px solid var(--border); }

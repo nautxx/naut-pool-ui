@@ -145,30 +145,23 @@ function areaChartSVG(values, { w = 800, h = 260, lineColor = 'var(--text)', are
   const max = Math.max(...values), min = Math.min(...values);
   const lineD = toPathScaled(values, w, h, max, min, false);
   const areaD = toPathScaled(values, w, h, max, min, true);
-  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" style="width:100%;display:block;height:${h}px;">
-    <defs>
-      <pattern id="dots-${uid}" width="10" height="10" patternUnits="userSpaceOnUse">
-        <circle cx="1.5" cy="1.5" r="1.3" style="fill:${lineColor};fill-opacity:0.14"/>
-      </pattern>
-      <linearGradient id="fadeH-${uid}" x1="0" x2="1" y1="0" y2="0">
-        <stop offset="0%" stop-color="black"/><stop offset="10%" stop-color="white"/><stop offset="90%" stop-color="white"/><stop offset="100%" stop-color="black"/>
-      </linearGradient>
-      <linearGradient id="fadeV-${uid}" x1="0" x2="0" y1="0" y2="1">
-        <stop offset="0%" stop-color="black"/><stop offset="15%" stop-color="white"/><stop offset="85%" stop-color="white"/><stop offset="100%" stop-color="black"/>
-      </linearGradient>
-      <mask id="fadeMask-${uid}" maskUnits="userSpaceOnUse" x="0" y="0" width="${w}" height="${h}">
-        <rect x="0" y="0" width="${w}" height="${h}" fill="url(#fadeH-${uid})"/>
-        <rect x="0" y="0" width="${w}" height="${h}" fill="url(#fadeV-${uid})" style="mix-blend-mode:multiply"/>
-      </mask>
-      <linearGradient id="areaFade-${uid}" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" style="stop-color:${areaColor};stop-opacity:0.14"/>
-        <stop offset="100%" style="stop-color:${areaColor};stop-opacity:0"/>
-      </linearGradient>
-    </defs>
-    <rect x="0" y="0" width="${w}" height="${h}" fill="url(#dots-${uid})" mask="url(#fadeMask-${uid})"/>
-    <path d="${areaD}" fill="url(#areaFade-${uid})"/>
-    <path d="${lineD}" fill="none" style="stroke:${lineColor}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
-  </svg>`;
+  // The dot grid is a CSS background (real pixels) rather than an SVG <pattern>,
+  // because the chart SVG uses preserveAspectRatio="none" to stretch to the
+  // container's width — that stretch is non-uniform (width scales, height
+  // doesn't), which would squish SVG-drawn circles into ellipses.
+  return `<div class="chart-canvas" style="height:${h}px;">
+    <div class="chart-dots-fade-h"><div class="chart-dots-fade-v"><div class="chart-dots" style="background-image:radial-gradient(circle, ${lineColor} 1.3px, transparent 1.3px);"></div></div></div>
+    <svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" style="width:100%;display:block;height:${h}px;position:relative;">
+      <defs>
+        <linearGradient id="areaFade-${uid}" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" style="stop-color:${areaColor};stop-opacity:0.14"/>
+          <stop offset="100%" style="stop-color:${areaColor};stop-opacity:0"/>
+        </linearGradient>
+      </defs>
+      <path d="${areaD}" fill="url(#areaFade-${uid})"/>
+      <path d="${lineD}" fill="none" style="stroke:${lineColor}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>
+  </div>`;
 }
 
 function dualChartSVG(raw, smoothed) {
