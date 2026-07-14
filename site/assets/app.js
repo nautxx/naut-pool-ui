@@ -298,19 +298,19 @@ async function renderDashboard(root) {
       <div class="hero-identity">
         <img class="hero-avatar" src="assets/avatar.png" alt="naut" />
         <div>
-          <h1 class="hero-title">naut × Public Pool</h1>
-          <div class="hero-sub mono">Open Source Solo Bitcoin Mining · nautsfw.com</div>
+          <h1 class="hero-title">${esc(SITE_CONFIG.siteName)}</h1>
+          <div class="hero-sub mono">${esc(SITE_CONFIG.tagline)} · ${esc(SITE_CONFIG.topbarDomain)}</div>
           <div class="hero-social">
-            <a href="https://twitter.com/Public_Pool_BTC" target="_blank" rel="noopener">X</a>
-            <a href="https://discord.gg/SnvPvAyP" target="_blank" rel="noopener">Discord</a>
-            <a href="https://github.com/nautxx" target="_blank" rel="noopener">GitHub</a>
+            <a href="${esc(SITE_CONFIG.social.x)}" target="_blank" rel="noopener">X</a>
+            <a href="${esc(SITE_CONFIG.social.discord)}" target="_blank" rel="noopener">Discord</a>
+            <a href="${esc(SITE_CONFIG.social.github)}" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
       </div>
       <div class="hr"></div>
       <div class="hero-conn">
         <div class="hero-conn-box mono">
-          stratum+tcp://pool.nautsfw.com:719<br/>
+          stratum+tcp://${esc(SITE_CONFIG.stratumHost)}:${esc(SITE_CONFIG.stratumPort)}<br/>
           username: &lt;BTC address&gt;.&lt;worker&gt;, password: x
         </div>
         <div class="hero-nofees mono">NO FEES — ONLYFRIENDS.</div>
@@ -348,7 +348,7 @@ async function renderDashboard(root) {
     <div class="donate-row">
       <img class="donate-qr" src="assets/qr-code-onchain.svg" alt="Donate QR" />
       <div class="donate-text">Like the project? Consider a donation.</div>
-      <div class="donate-addr mono">bc1qs6q4h2upkgezvesgy27atl54ccgm5qppr3heah</div>
+      <div class="donate-addr mono">${esc(SITE_CONFIG.donationAddress)}</div>
     </div>
   `;
 
@@ -595,5 +595,10 @@ async function renderDetailView(root, address, workerName, sessionId) {
 
 // ---------------------------------------------------------------- init --
 
+function applyBranding() {
+  document.title = SITE_CONFIG.siteName;
+  document.getElementById('topbar-domain').textContent = SITE_CONFIG.topbarDomain;
+}
+
 window.addEventListener('hashchange', render);
-window.addEventListener('DOMContentLoaded', () => { initTheme(); render(); });
+window.addEventListener('DOMContentLoaded', () => { initTheme(); applyBranding(); render(); });

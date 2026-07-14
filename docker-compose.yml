@@ -1,14 +1,14 @@
 services:
   public-pool-ui:
-    image: smolgrrr/public-pool-ui:8cd2563
+    # Plain nginx — site/ is a hand-written static site now, so there's
+    # nothing Public-Pool-UI-specific left to depend on here. The API base
+    # path is hardcoded to /api in site/assets/app.js; Caddy is expected to
+    # proxy /api to the Public-Pool instance on Umbrel.
+    image: nginx:1.27-alpine
     container_name: public-pool-ui
-    environment:
-      # Tell the frontend where the API lives, from the browser's point of view.
-      # We're gonna serve /api from Caddy and forward it to Umbrel.
-      - PUBLIC_POOL_API_URL=/api
     ports:
-      - "2019:80"
+      - "${PORT:-2019}:80"
     volumes:
-      # Mounts the customized frontend into the container’s web root
-      - "./custom-ui/html:/usr/share/nginx/html:ro"
+      # Mounts the static site into the container's web root
+      - "./site:/usr/share/nginx/html:ro"
     restart: always
