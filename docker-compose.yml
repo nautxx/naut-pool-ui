@@ -1,11 +1,11 @@
 services:
-  public-pool-ui:
+  naut-pool-ui:
     # Plain nginx — site/ is a hand-written static site now, so there's
     # nothing Public-Pool-UI-specific left to depend on here. The API base
     # path is hardcoded to /api in site/assets/app.js; Caddy is expected to
     # proxy /api to the Public-Pool instance on Umbrel.
     image: nginx:1.27-alpine
-    container_name: public-pool-ui
+    container_name: naut-pool-ui
     ports:
       - "${PORT:-2019}:80"
     volumes:

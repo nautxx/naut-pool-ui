@@ -201,7 +201,7 @@ function toggleTheme() {
 function themeToggleHTML() {
   const theme = document.documentElement.getAttribute('data-theme') || 'dark';
   const label = theme === 'dark' ? 'Dark' : 'Light';
-  return `<button class="btn" id="theme-toggle-btn"><span class="dot"></span>${label}</button>`;
+  return `<button class="btn theme-toggle" id="theme-toggle-btn"><span class="dot"></span>${label}</button>`;
 }
 
 // -------------------------------------------------------------- router --
