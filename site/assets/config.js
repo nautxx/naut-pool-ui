@@ -11,6 +11,6 @@ window.SITE_CONFIG = {
   social: {
     x: 'https://twitter.com/Public_Pool_BTC',
     discord: 'https://discord.gg/SnvPvAyP',
-    github: 'https://github.com/nautxx',
+    github: 'https://github.com/nautxx/naut-pool-ui',
   },
 };
