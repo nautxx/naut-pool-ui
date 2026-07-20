@@ -12,5 +12,6 @@ window.SITE_CONFIG = {
     x: 'https://twitter.com/Public_Pool_BTC',
     discord: 'https://discord.gg/SnvPvAyP',
     github: 'https://github.com/nautxx/naut-pool-ui',
+    koFi: 'https://ko-fi.com/nautxx',
   },
 };
