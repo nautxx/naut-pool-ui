@@ -339,12 +339,17 @@ async function renderDashboard(root) {
     </div>
 
     <div class="donate-row">
-      <img class="donate-qr" src="assets/qr-code-onchain.svg" alt="Donate QR" />
-      <div class="donate-text">
-        Like the project? Consider a donation.
-        <a class="donate-kofi" href="${esc(SITE_CONFIG.social.koFi)}" target="_blank" rel="noopener">Ko-fi ↗</a>
+      <div class="donate-heading">Like the project? Consider a donation.</div>
+      <div class="donate-tiles">
+        <div class="donate-tile">
+          <img class="donate-tile-qr" src="assets/qr-code-onchain.svg" alt="Bitcoin donation QR code" />
+          <div class="donate-tile-label mono">${esc(SITE_CONFIG.donationAddress)}</div>
+        </div>
+        <a class="donate-tile" href="${esc(SITE_CONFIG.social.koFi)}" target="_blank" rel="noopener">
+          <img class="donate-tile-qr" src="assets/qr-code-kofi.svg" alt="Ko-fi donation QR code" />
+          <div class="donate-tile-label">Ko-fi ↗</div>
+        </a>
       </div>
-      <div class="donate-addr mono">${esc(SITE_CONFIG.donationAddress)}</div>
     </div>
   `;
 
