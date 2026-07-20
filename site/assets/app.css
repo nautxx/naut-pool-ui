@@ -429,11 +429,11 @@ a { color: inherit; }
 }
 .tabs-head button + button { border-left: 1.5px solid var(--border); }
 .tabs-head button.active { background: var(--text); color: var(--bg); }
-.tabs-body { padding: 24px; }
+.tabs-body { padding: 24px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
 /* ---------- tables ---------- */
 
-table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.data-table { width: 100%; min-width: 480px; border-collapse: collapse; font-size: 13px; }
 .data-table th {
   text-align: left;
   font-size: 11px;
