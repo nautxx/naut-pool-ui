@@ -98,6 +98,7 @@ a { color: inherit; }
   .topbar-inner { flex-wrap: wrap; row-gap: 10px; }
   .topbar-actions { width: 100%; }
   .field-group { flex: 1 1 100%; }
+  .field-group input { flex: 1; width: auto; }
 }
 
 /* ---------- buttons ---------- */
